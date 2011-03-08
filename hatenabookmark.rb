@@ -5,7 +5,6 @@ require 'digest/sha1'
 require 'net/http'
 require 'uri'
 require 'nkf'
-require 'pp'
 
 # wsse認証を行う
 def wsse(hatena_id, password)
@@ -54,7 +53,6 @@ hatena = Pit.get("hatena", :require => {
 
 # WSSE認証
 header = wsse(hatena["hatena_id"], hatena["password"])
-pp header
 
 uri = URI.parse(url)
 proxy_class = Net::HTTP::Proxy(ENV["PROXY"], 8080)
@@ -65,8 +63,6 @@ http.start do |http|
 	# b_comment = NKF.nkf('-w', b_comment)
 	
 	# エンドポイントへPOST
-	print getXml(b_url, b_comment)
-	print "\n"
 	res = http.post(uri.path, getXml(b_url, b_comment), header)
 	if res.code == "201" then
 		print "Bookmark success: #{b_url}\n"
