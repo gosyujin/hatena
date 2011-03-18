@@ -47,8 +47,8 @@ hatena = Pit.get("hatena", :require => {
 })
 # pitを使わずにべた書き用
 # hatena = {
-#	hatena_id => HATENA_ID, 
-#	password = PASSWORD
+#	"hatena_id" => HATENA_ID, 
+#	"password" => PASSWORD
 # }
 
 # WSSE認証
